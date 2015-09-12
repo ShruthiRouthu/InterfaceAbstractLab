@@ -14,7 +14,7 @@ public class IntroToProgrammingCourse  extends ProgrammingCourse{
     private double credits ;
 
     // Constructors
-    public IntroToProgrammingCourse(String courseName, String courseNumber, String prerequisites,double credits) {
+    public IntroToProgrammingCourse(String courseName, String courseNumber ,double credits) {
         this.setCourseName(courseName);
         this.setCourseNumber(courseNumber);
         this.setPrerequisites("none");

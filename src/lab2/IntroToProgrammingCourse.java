@@ -8,20 +8,40 @@ import javax.swing.JOptionPane;
  * @author      your name goes here
  * @version     1.00
  */
-public class IntroToProgrammingCourse {
+public class IntroToProgrammingCourse implements ProgrammingCourse {
     private String courseName;
     private String courseNumber;
+    private String prerequisites;
     private double credits;
 
-    public IntroToProgrammingCourse(String courseName, String courseNumber) {
+    // Constructors
+    public IntroToProgrammingCourse(String courseName, String courseNumber, double credits) {
         this.setCourseName(courseName);
         this.setCourseNumber(courseNumber);
+        this.setPrerequisites("none");
+        this.setCredits(credits);
+    }
+    
+    public IntroToProgrammingCourse(){
+       this.setCourseName("Not assigned");
+       this.setCourseNumber("Not assigned");
+       this.setPrerequisites("None");
+       this.credits = 0.0;
     }
 
-    public String getCourseNumber() {
-        return courseNumber;
+    // Setters
+       
+    @Override
+    public final void setCourseName(String courseName) {
+        if(courseName == null || courseName.length() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Error: courseName cannot be null of empty string");
+            System.exit(0);
+        }
+        this.courseName = courseName;
     }
-
+    
+    @Override
     public final void setCourseNumber(String courseNumber) {
         if(courseNumber == null || courseNumber.length() == 0) {
             JOptionPane.showMessageDialog(null,
@@ -31,10 +51,13 @@ public class IntroToProgrammingCourse {
         this.courseNumber = courseNumber;
     }
 
-    public double getCredits() {
-        return credits;
+    @Override
+    public final void setPrerequisites(String prerequisites) {
+        this.prerequisites = "none";
     }
 
+    
+    @Override
     public void setCredits(double credits) {
         if(credits < 0.5 || credits > 4.0) {
             JOptionPane.showMessageDialog(null,
@@ -43,19 +66,25 @@ public class IntroToProgrammingCourse {
         }
         this.credits = credits;
     }
-
-    public String getCourseName() {
+    
+    // Getters
+    
+    public final String getCourseName() {
         return courseName;
     }
-
-    public final void setCourseName(String courseName) {
-        if(courseName == null || courseName.length() == 0) {
-            JOptionPane.showMessageDialog(null,
-                    "Error: courseName cannot be null of empty string");
-            System.exit(0);
-        }
-        this.courseName = courseName;
-    }
-
     
+    public final String getCourseNumber() {
+        return courseNumber;
+    }
+    
+    public final String getPrerequisites() {
+        return prerequisites;
+    }
+    
+    public final double getCredits() {
+        return credits;
+    }
+    
+    
+
 }
